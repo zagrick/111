@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Пример</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+<div class="header">
+	<div class="container">
+		<div class="header__body">
+			<h1>ПЭ LB-52U ГОСТ</h1><div><p>Хит продаж</p></div>
+		</div>
+	</div>
+</div>
+<div class="main">
+    <div class="container">
+        <div class="main__body">
+            <div class="main__blocks">
+            	<div class="main__block">
+            		<p>Цена(без НДС)</p>
+            		<button onclick="return b(this)">от 107 ₽/кг</button>
+            	</div>
+            	<div class="main__block">
+            		<p>Диаметр</p>
+            		<div>
+            			<button onclick="return b2(this)">2,5 мм</button>
+            			<button onclick="return b3(this)">3 мм</button>
+            			<button onclick="return b4(this)">4 мм</button>
+            			<button onclick="return b5(this)">5 мм</button>
+            		</div>
+            	</div>
+            	<div class="main__block">
+            		<p>Упаковка</p>
+            		<div>
+            			<button onclick="return b6(this)">1 кг</button>
+            			<button onclick="return b7(this)">1,5 кг</button>
+            			<button onclick="return b8(this)">2,5 кг</button>
+            			<button onclick="return b9(this)">5 кг</button>
+            		</div>
+            	</div>
+            	<div class="main__block">
+            		<p>Тип электродов Э50А</p>
+            	</div>
+            </div>
+            <button class="main__order order">оформить заявку</button>
+        </div>
+    </div>
+    <div class="main__img">
+    	<img src="/img/img.png" alt="img">
+    </div>
+    <!-- Фоновая картинка -->
+	<div class="main__bg ibg">
+		<img src="/img/bg.jpg" alt="bg">
+	</div>
+</div><div class="popap">
+    <div class="popap-bg"></div>
+    <div class="popap-inner">
+        <div class="add-order">
+            <span class="close" title="Закрыть"></span>
+            <h1>заявка на ПЭ LB-52U ГОСТ</h1>
+            <?php
+            if (isset($_POST["sends"])) {
+                $to = "sales@marketing-na100.ru";
+                $subject = "ЗАЯВКА НА ПЭ LB-52U ГОСТ";
+                $charset = "utf-8";
+                $headerss ="Content-type: text/html; charset=$charset\r\n";
+                $headerss.="MIME-Version: 1.0\r\n";
+                $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
+                $msg = "Имя: ".$_POST["name"]."\r\nТелефон: ".$_POST["phone"]."\r\nEmail: ".$_POST["email"]."\r\n";
+                mail($to, $subject, $msg, $headerss); ?>
+            <form action="/" method="post" name="form">
+                <p>
+                    <input type="text" name="name" data-rule="name" placeholder="Имя" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Имя'">
+                    <span class="error err1"></span>
+                </p>
+                <p>
+                    <input type="tel" name="phone" data-rule="phone" placeholder="Телефон" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Телефон'">
+                    <span class="error err2"></span>
+                </p>
+                <p>
+                    <input type="email" name="email" data-rule="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                    <span class="error err3"></span>
+                </p>
+                <div class="block-checkbox">
+                    <div class="checkbox">
+                        <input id="check" type="checkbox" name="check" data-rule="check" value="0">
+                        <label for="check"><img src="img/icons/l.png" alt=""></label>
+                    </div>
+                    <p>Даю согласие на обработку персональных данных</p>
+                </div>
+                <div class="block-error"><p class="error err"></p></div>
+                <div class="success"></div>
+                <div class="order">
+                    <button type="submit" class="sends" name="sends">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html>

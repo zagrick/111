@@ -1,0 +1,45 @@
+<div class="popap">
+    <div class="popap-bg"></div>
+    <div class="popap-inner">
+        <div class="add-order">
+            <span class="close" title="Закрыть"></span>
+            <h1>заявка на ПЭ LB-52U ГОСТ</h1>
+            <?php
+            if (isset($_POST["sends"])) {
+                $to = "sales@marketing-na100.ru";
+                $subject = "ЗАЯВКА НА ПЭ LB-52U ГОСТ";
+                $charset = "utf-8";
+                $headerss ="Content-type: text/html; charset=$charset\r\n";
+                $headerss.="MIME-Version: 1.0\r\n";
+                $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
+                $msg = "Имя: ".$_POST["name"]."\r\nТелефон: ".$_POST["phone"]."\r\nEmail: ".$_POST["email"]."\r\n";
+                mail($to, $subject, $msg, $headerss); ?>
+            <form action="/" method="post" name="form">
+                <p>
+                    <input type="text" name="name" data-rule="name" placeholder="Имя" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Имя'">
+                    <span class="error err1"></span>
+                </p>
+                <p>
+                    <input type="tel" name="phone" data-rule="phone" placeholder="Телефон" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Телефон'">
+                    <span class="error err2"></span>
+                </p>
+                <p>
+                    <input type="email" name="email" data-rule="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                    <span class="error err3"></span>
+                </p>
+                <div class="block-checkbox">
+                    <div class="checkbox">
+                        <input id="check" type="checkbox" name="check" data-rule="check" value="0">
+                        <label for="check"><img src="img/icons/l.png" alt=""></label>
+                    </div>
+                    <p>Даю согласие на обработку персональных данных</p>
+                </div>
+                <div class="block-error"><p class="error err"></p></div>
+                <div class="success"></div>
+                <div class="order">
+                    <button type="submit" class="sends" name="sends">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
